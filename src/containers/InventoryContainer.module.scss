@@ -1,0 +1,118 @@
+@import "../styles/variables.scss";
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    margin: 5rem 0 0.5rem 0;
+  }
+
+  p {
+    color: rgb(100, 100, 100);
+
+    &:last-of-type {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .inner {
+    display: flex;
+
+    .left {
+      min-width: 600px;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h3 {
+        margin: 1rem 0 1rem 0;
+      }
+
+      .item-table {
+        .header {
+          grid-template-columns: 2fr 1fr;
+        }
+
+        .row {
+          grid-template-columns: 2fr 1fr;
+        }
+      }
+    }
+
+    .right {
+      min-width: 600px;
+      width: 50%;
+      margin: 0 1.5rem 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h3 {
+        margin: 1rem 0 1rem 0;
+      }
+
+      .mat-table {
+        .header {
+          grid-template-columns: 2fr 1fr 1fr 1fr;
+        }
+
+        .row {
+          grid-template-columns: 2fr 1fr 1fr 1fr;
+        }
+      }
+    }
+
+    .table {
+      width: 80%;
+
+      .header {
+        position: relative;
+        display: grid;
+        line-height: 1.8rem;
+
+        span {
+          text-align: center;
+          background-color: $sub;
+          border: 1px solid $border-color;
+          font-size: 0.9rem;
+
+          &:hover {
+            background-color: $sub2;
+          }
+
+          &:not(:first-of-type) {
+            border-left: none;
+          }
+        }
+      }
+
+      .row {
+        position: relative;
+        display: grid;
+
+        span {
+          text-align: center;
+          line-height: 1.8rem;
+          border-left: 1px solid $border-color;
+          border-bottom: 1px solid $border-color;
+          border-right: 1px solid $border-color;
+          font-size: 0.9rem;
+
+          &:hover {
+            background-color: rgb(249, 249, 249);
+          }
+
+          &:not(:first-of-type) {
+            border-left: none;
+          }
+        }
+      }
+    }
+  }
+}
