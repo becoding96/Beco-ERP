@@ -185,14 +185,72 @@ const ItemMaterialContainer = () => {
 
       const updatedData = matData.filter((_, i) => i !== index);
       setMatData(updatedData);
-      const docRef = doc(db, "Material", entryToDelete.name);
-      await deleteDoc(docRef);
+      const matQuery = query(
+        collection(db, "Material"),
+        where("userId", "==", user.uid),
+        where("name", "==", entryToDelete.name)
+      );
+      const matSnapshot = await getDocs(matQuery);
+      if (!matSnapshot.empty) {
+        const docRef = doc(db, "Material", matSnapshot.docs[0].id);
+        await deleteDoc(docRef);
+      }
+
+      const matInventoryQuery = query(
+        collection(db, "MatInventory"),
+        where("userId", "==", user.uid),
+        where("name", "==", entryToDelete.name)
+      );
+      const matInventorySnapshot = await getDocs(matInventoryQuery);
+      if (!matInventorySnapshot.empty) {
+        const matInventoryDocRef = doc(
+          db,
+          "MatInventory",
+          matInventorySnapshot.docs[0].id
+        );
+        await deleteDoc(matInventoryDocRef);
+      }
     } else if (tab === 1) {
       const entryToDelete = itemData[index];
+      const workReportQuery = query(
+        collection(db, "WorkReport"),
+        where("userId", "==", user.uid),
+        where("name", "==", entryToDelete.name)
+      );
+      const workReportSnapshot = await getDocs(workReportQuery);
+
+      if (!workReportSnapshot.empty) {
+        alert("해당 품목은 생산 실적이 있어 삭제할 수 없습니다.");
+        return;
+      }
+
       const updatedData = itemData.filter((_, i) => i !== index);
       setItemData(updatedData);
-      const docRef = doc(db, "Item", entryToDelete.name);
-      await deleteDoc(docRef);
+      const itemQuery = query(
+        collection(db, "Item"),
+        where("userId", "==", user.uid),
+        where("name", "==", entryToDelete.name)
+      );
+      const itemSnapshot = await getDocs(itemQuery);
+      if (!itemSnapshot.empty) {
+        const docRef = doc(db, "Item", itemSnapshot.docs[0].id);
+        await deleteDoc(docRef);
+      }
+
+      const itemInventoryQuery = query(
+        collection(db, "ItemInventory"),
+        where("userId", "==", user.uid),
+        where("name", "==", entryToDelete.name)
+      );
+      const itemInventorySnapshot = await getDocs(itemInventoryQuery);
+      if (!itemInventorySnapshot.empty) {
+        const itemInventoryDocRef = doc(
+          db,
+          "ItemInventory",
+          itemInventorySnapshot.docs[0].id
+        );
+        await deleteDoc(itemInventoryDocRef);
+      }
     }
 
     setEditIndex(null);
@@ -208,6 +266,7 @@ const ItemMaterialContainer = () => {
     <div className={styles.container}>
       <h2>자재/품목 등록</h2>
       <p>수량을 관리할 자재와 품목을 등록하는 화면입니다.</p>
+      <p>입고와 생산 내역이 있는 경우 삭제할 수 없습니다.</p>
       <div className={styles.tab} style={{ width: "34rem" }}>
         <button
           value={0}

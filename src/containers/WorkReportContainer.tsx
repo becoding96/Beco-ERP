@@ -265,7 +265,7 @@ const WorkReportContainer = () => {
     } else {
       await addDoc(collection(db, "ItemInventory"), {
         name: productionData.name,
-        incomingQty: productionData.prodQty,
+        incomingQty: productionData.goodQty,
         outgoingQty: 0,
         userId: user.uid,
       });
@@ -337,6 +337,7 @@ const WorkReportContainer = () => {
       <h2>생산 실적</h2>
       <p>자재를 소요해 품목을 생산해주세요.</p>
       <p>등록된 자재와 품목만 입력할 수 있습니다.</p>
+      <p>소요되는 자재의 수량은 재고를 초과할 수 없습니다.</p>
       <div className={styles.inner}>
         <div className={styles.left}>
           <h3>생산 품목</h3>
