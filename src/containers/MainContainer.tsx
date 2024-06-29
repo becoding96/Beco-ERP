@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import bannerImage from "/banner.webp";
 import LottieComponent from "../components/Lottie";
+import { base } from "../App";
 
 function MainContainer() {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ function MainContainer() {
               fontWeight: "600",
               margin: "1.25rem 0 0 0",
             }}
-            onClick={() => navigate("/Beco-ERP/im")}
+            onClick={() => navigate(`/${base}/im`)}
           />
         </div>
       </div>
@@ -87,7 +88,7 @@ function MainContainer() {
               fontWeight: "600",
               margin: "1.25rem 0 0 0",
             }}
-            onClick={() => navigate("/Beco-ERP/wh")}
+            onClick={() => navigate(`/${base}/wh`)}
           />
         </div>
         <div className={styles.animation}>
@@ -113,7 +114,7 @@ function MainContainer() {
               fontWeight: "600",
               margin: "1.25rem 0 0 0",
             }}
-            onClick={() => navigate("/Beco-ERP/wr")}
+            onClick={() => navigate(`/${base}/wr`)}
           />
         </div>
       </div>
@@ -132,7 +133,7 @@ function MainContainer() {
               fontWeight: "600",
               margin: "1.25rem 0 0 0",
             }}
-            onClick={() => navigate("/Beco-ERP/iv")}
+            onClick={() => navigate(`/${base}/iv`)}
           />
         </div>
         <div className={styles.animation}>

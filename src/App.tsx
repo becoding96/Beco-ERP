@@ -6,15 +6,17 @@ import WarehousingPage from "./pages/WarehousingPage";
 import WorkReportPage from "./pages/WorkReportPage";
 import InventoryPage from "./pages/InventoryPage";
 
+export const base = "beco-erp";
+
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/Beco-ERP" element={<MainPage />} />
-        <Route path="/Beco-ERP/im" element={<ItemMaterialPage />} />
-        <Route path="/Beco-ERP/wh" element={<WarehousingPage />} />
-        <Route path="/Beco-ERP/wr" element={<WorkReportPage />} />
-        <Route path="/Beco-ERP/iv" element={<InventoryPage />} />
+        <Route path={`${base}`} element={<MainPage />} />
+        <Route path={`${base}/im`} element={<ItemMaterialPage />} />
+        <Route path={`${base}/wh`} element={<WarehousingPage />} />
+        <Route path={`${base}/wr`} element={<WorkReportPage />} />
+        <Route path={`${base}/iv`} element={<InventoryPage />} />
       </Routes>
     </Router>
   );
